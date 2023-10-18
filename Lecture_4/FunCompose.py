@@ -1,13 +1,13 @@
-from math import *
+"""
+Написать функцию (точнее, функционал) compose(f, g),
+которому на вход подаётся два объекта-функции: f(x, y) от двух параметров,
+и g(x₁, …, xₙ) от произвольного количества параметров.
+compose(f, g) должна возвращать функцию h() от n параметров, являющуюся результатом применения
+f() к g(x₁, …, xₙ) (в прямом порядке) и g(xₙ, …, x₁) (в обратном порядке)
+"""
 
-def compose(f, g, *kwargs):
-    def r(*kwargs):
-        def h():
-            return f(g(kwargs), g(kwargs[::-1]))
+def compose(f, g):
+    def h(*kwargs):
+        return f(g(*kwargs), g(*kwargs[::-1]))
 
-        return h
-    return r()
-
-print(max(pow(5, 6), pow(6,5)))
-
-print(compose(max, pow)(5,6, 7, 8))
+    return h
